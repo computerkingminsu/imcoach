@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import LayoutHeader from './header/LayoutHeader.index';
 import LayoutBanner from './banner/LayoutBanner.index';
-// import { useAuth } from '../hooks/coustoms/useAuth';
+import { useAuth } from '../hooks/useAuth';
 import LayoutFooter from './footer/LayoutFooter.index';
 import { useRecoilState } from 'recoil';
 import { isLoggedIn } from '../../commons/globalstate/globalstate';
@@ -16,7 +16,7 @@ const Body = styled.div`
 `;
 
 export default function Layout(props: ILayoutProps) {
-  // useAuth();
+  useAuth();
   return (
     <>
       <LayoutHeader />
