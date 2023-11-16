@@ -1,5 +1,5 @@
-import { useLogin } from '../../hooks/coustoms/useLogin';
-import { useMoveToPage } from '../../hooks/coustoms/useMoveToPage';
+import { useLogin } from '../../hooks/useLogin';
+import { useMoveToPage } from '../../hooks/useMoveToPage';
 import { Base, LoginButton, LoginHeadText, LoginInput, LoginText, Wrapper } from './LoginPage.styles';
 import { Modal } from 'antd';
 

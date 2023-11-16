@@ -1,5 +1,5 @@
 import { authInstance, db } from '../../../../../../pages/_app';
-import { useGetExerciseDetailPost } from '../../../../hooks/coustoms/useGetExerciseDetailPost';
+import { useGetExerciseDetailPost } from '../../../../hooks/useGetExerciseDetailPost';
 import { Button, DetailImage, Infor, Price, Title, Wrapper, Writer } from './WorkoutDetail.style';
 import Head from 'next/head';
 import { useEffect } from 'react';

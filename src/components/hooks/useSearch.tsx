@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { getFirestore, collection, query, where, orderBy, startAt, endAt, getDocs } from 'firebase/firestore';
-import { db, firebaseapp } from '../../../../pages/_app';
+import { db, firebaseapp } from '../../../pages/_app';
 
 export const useFirebaseSearch = (collectionName: string, searchTerm: string) => {
   const [searchResults, setSearchResults] = useState([]);

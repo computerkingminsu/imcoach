@@ -1,4 +1,4 @@
-import { useSignup } from '../../hooks/coustoms/useSignup';
+import { useSignup } from '../../hooks/useSignup';
 import {
   Base,
   PasswordText,

@@ -1,7 +1,7 @@
 import { collection, getDocs, query } from 'firebase/firestore';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
-import { db } from '../../../../pages/_app';
+import { db } from '../../../pages/_app';
 
 export const useGetExercisePosts = (menu: string) => {
   const router = useRouter();

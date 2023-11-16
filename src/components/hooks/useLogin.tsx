@@ -2,10 +2,10 @@ import { ChangeEvent, useState } from 'react';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 
 import { useRouter } from 'next/router';
-import { authInstance } from '../../../../pages/_app';
+import { authInstance } from '../../../pages/_app';
 import { Modal } from 'antd';
 import { useRecoilState } from 'recoil';
-import { isLoggedIn, layoutEmail } from '../../../commons/globalstate/globalstate';
+import { isLoggedIn, layoutEmail } from '../../commons/globalstate/globalstate';
 
 export const useLogin = () => {
   const [email, setEmail] = useState('');

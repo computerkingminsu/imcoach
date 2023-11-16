@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { collection, getDocs, getFirestore, limit, orderBy, query, startAfter } from 'firebase/firestore';
 import { useBottomScrollListener } from 'react-bottom-scroll-listener';
-import { db, firebaseapp } from '../../../../pages/_app';
+import { db, firebaseapp } from '../../../pages/_app';
 
 export const useGetPosts = (menu: string) => {
   const [posts, setPosts] = useState([]);

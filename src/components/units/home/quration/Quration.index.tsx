@@ -1,4 +1,4 @@
-import { useMoveToPage } from '../../../hooks/coustoms/useMoveToPage';
+import { useMoveToPage } from '../../../hooks/useMoveToPage';
 import { QurationWrapper, QurationContents, QurationImage } from './Quration.styles';
 
 export default function Quration() {

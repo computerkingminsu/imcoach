@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 import { doc, deleteDoc } from 'firebase/firestore';
-import { db } from '../../../../pages/_app';
+import { db } from '../../../pages/_app';
 
 export const useDeletePost = () => {
   const [isDeleting, setIsDeleting] = useState(false);

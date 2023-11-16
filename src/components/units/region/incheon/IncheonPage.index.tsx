@@ -11,7 +11,7 @@ import {
 } from './IncheonPage.style';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import { kakaoKey } from '../../../../../api';
+import { kakaoKey } from '../../../../../pages/_app';
 
 export default function IncheonPage() {
   const router = useRouter();

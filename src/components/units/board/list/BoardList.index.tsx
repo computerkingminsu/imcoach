@@ -1,11 +1,11 @@
 import * as S from './BoardList.styles';
-import { useMoveToPage } from '../../../hooks/coustoms/useMoveToPage';
+import { useMoveToPage } from '../../../hooks/useMoveToPage';
 import Searchbars from '../../../searchbars/01/Searchbars.index';
-import { useGetPosts } from '../../../hooks/coustoms/useGetPosts';
-import { useFirebaseSearch } from '../../../hooks/coustoms/useSearch';
+import { useGetPosts } from '../../../hooks/useGetPosts';
+import { useFirebaseSearch } from '../../../hooks/useSearch';
 import react, { useState } from 'react';
 import { useRouter } from 'next/router';
-import { useAuth } from '../../../hooks/coustoms/useAuth';
+import { useAuth } from '../../../hooks/useAuth';
 import { useRecoilState } from 'recoil';
 import { Spin } from 'antd';
 import { isLoggedIn } from '../../../../commons/globalstate/globalstate';

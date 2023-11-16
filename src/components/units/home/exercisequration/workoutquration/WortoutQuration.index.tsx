@@ -12,8 +12,8 @@ import {
   Title,
   Wrapper,
 } from './WortoutQuration.styles';
-import { useGetExercisePosts } from '../../../../hooks/coustoms/useGetExercisePosts';
-import { useMoveToPage } from '../../../../hooks/coustoms/useMoveToPage';
+import { useGetExercisePosts } from '../../../../hooks/useGetExercisePosts';
+import { useMoveToPage } from '../../../../hooks/useMoveToPage';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { useEffect, useState } from 'react';

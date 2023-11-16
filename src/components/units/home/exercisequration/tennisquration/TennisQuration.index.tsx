@@ -12,8 +12,8 @@ import {
   Title,
   Wrapper,
 } from './TennisQuration.styles';
-import { useGetExercisePosts } from '../../../../hooks/coustoms/useGetExercisePosts';
-import { useMoveToPage } from '../../../../hooks/coustoms/useMoveToPage';
+import { useGetExercisePosts } from '../../../../hooks/useGetExercisePosts';
+import { useMoveToPage } from '../../../../hooks/useMoveToPage';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 

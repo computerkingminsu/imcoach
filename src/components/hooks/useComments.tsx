@@ -1,11 +1,10 @@
 import { Firestore, addDoc, collection, deleteDoc, doc, getDocs, orderBy, query, where } from 'firebase/firestore';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
-import { authInstance, db } from '../../../../pages/_app';
+import { authInstance, db } from '../../../pages/_app';
 import { useRecoilState } from 'recoil';
-import { isLoggedIn } from '../../../commons/globalstate/globalstate';
+import { isLoggedIn } from '../../commons/globalstate/globalstate';
 import { Modal } from 'antd';
-import { useAuth } from './useAuth';
 
 export const useComments = (menu: string) => {
   const router = useRouter();

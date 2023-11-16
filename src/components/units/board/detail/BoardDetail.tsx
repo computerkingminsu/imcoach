@@ -1,14 +1,14 @@
 import { useRouter } from 'next/router';
-import { useGetDetailPost } from '../../../hooks/coustoms/useGetDetailPost';
+import { useGetDetailPost } from '../../../hooks/useGetDetailPost';
 import * as S from './BoardDetail.style';
 import React, { useState } from 'react';
-import { useMoveToPage } from '../../../hooks/coustoms/useMoveToPage';
-import { useDeletePost } from '../../../hooks/coustoms/useDeletePost';
+import { useMoveToPage } from '../../../hooks/useMoveToPage';
+import { useDeletePost } from '../../../hooks/useDeletePost';
 import { Modal } from 'antd';
 import { ExclamationCircleFilled } from '@ant-design/icons';
-import { useComments } from '../../../hooks/coustoms/useComments';
+import { useComments } from '../../../hooks/useComments';
 // import { useAuth } from '../../../hooks/coustoms/useAuth';
-import { useLogin } from '../../../hooks/coustoms/useLogin';
+import { useLogin } from '../../../hooks/useLogin';
 
 export default function BoardDetail(): JSX.Element {
   const router = useRouter();

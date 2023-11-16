@@ -23,7 +23,7 @@ import {
 import 'firebase/auth';
 import { isLoggedIn, layoutEmail, useSsrComplectedState } from '../../../commons/globalstate/globalstate';
 import { authInstance } from '../../../../pages/_app';
-import { useMoveToPage } from '../../hooks/coustoms/useMoveToPage';
+import { useMoveToPage } from '../../hooks/useMoveToPage';
 import { useRecoilValue } from 'recoil';
 import type { MenuProps } from 'antd';
 import { Dropdown } from 'antd';

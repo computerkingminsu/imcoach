@@ -2,7 +2,7 @@ import dynamic from 'next/dynamic';
 import 'react-quill/dist/quill.snow.css';
 import { ButtonWrapper, CancelButton, SubmitButton, Title, Wrapper } from '../write/BoardWrite.styles';
 import { useRouter } from 'next/router';
-import { useEditPost } from '../../../hooks/coustoms/useEditPost';
+import { useEditPost } from '../../../hooks/useEditPost';
 import { Modal } from 'antd';
 
 const ReactQuill = dynamic(async () => await import('react-quill'), {

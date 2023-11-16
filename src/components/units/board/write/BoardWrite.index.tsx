@@ -1,8 +1,8 @@
 import { ButtonWrapper, CancelButton, SubmitButton, Title, Wrapper } from './BoardWrite.styles';
 import dynamic from 'next/dynamic';
 import 'react-quill/dist/quill.snow.css';
-import { useMoveToPage } from '../../../hooks/coustoms/useMoveToPage';
-import { useWritePost } from '../../../hooks/coustoms/useWritePost';
+import { useMoveToPage } from '../../../hooks/useMoveToPage';
+import { useWritePost } from '../../../hooks/useWritePost';
 import { Modal } from 'antd';
 
 const ReactQuill = dynamic(async () => await import('react-quill'), {

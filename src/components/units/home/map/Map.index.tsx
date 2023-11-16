@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { KakaoMap, MapTitle, MapWrapper, Wrapper } from './Map.styles';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import { kakaoKey } from '../../../../../api';
+import { kakaoKey } from '../../../../../pages/_app';
 
 export default function Map() {
   const router = useRouter();
