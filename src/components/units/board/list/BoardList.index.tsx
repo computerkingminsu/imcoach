@@ -5,7 +5,6 @@ import { useGetPosts } from '../../../hooks/useGetPosts';
 import { useFirebaseSearch } from '../../../hooks/useSearch';
 import react, { useState } from 'react';
 import { useRouter } from 'next/router';
-import { useAuth } from '../../../hooks/useAuth';
 import { useRecoilState } from 'recoil';
 import { Spin } from 'antd';
 import { isLoggedIn } from '../../../../commons/globalstate/globalstate';
