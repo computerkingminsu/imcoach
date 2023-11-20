@@ -115,4 +115,5 @@ export const PostImage = styled.div`
   height: 175px;
   border-radius: 15px;
   overflow: hidden;
+  margin-top: 111px;
 `;
