@@ -13,6 +13,7 @@ import {
   Sidebarlist,
   Wrapper,
 } from './GolfPage.styles';
+import Image from 'next/image';
 
 export default function GolfPage(): JSX.Element {
   const { posts } = useGetExercisePosts('golf');
@@ -32,7 +33,16 @@ export default function GolfPage(): JSX.Element {
       <ContentsWrapper>
         {posts.map((post: any) => (
           <Contents key={post.id} id={post.id} onClick={onClickMoveToPostDetail}>
-            <PostImage src={post.imgUrl} />
+            <PostImage>
+              <Image
+                src={post.imgUrl}
+                alt={post.title}
+                width={270}
+                height={175}
+                placeholder="blur"
+                blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFklEQVR42mN8//HLfwYiAOOoQvoqBABbWyZJf74GZgAAAABJRU5ErkJggg=="
+              />
+            </PostImage>
             <PostTitle>{post.title}</PostTitle>
             <PostPrice>{post.price}</PostPrice>
             <PostWriter>{post.writer}</PostWriter>

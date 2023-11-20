@@ -114,4 +114,5 @@ export const PostImage = styled.img`
   width: 270px;
   height: 175px;
   border-radius: 15px;
+  overflow: hidden;
 `;
