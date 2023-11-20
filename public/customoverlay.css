@@ -1,5 +1,5 @@
 /* customoverlay.css */
-/* .customoverlay {
+.customoverlay {
   position: relative;
   bottom: 85px;
   border-radius: 6px;
@@ -46,4 +46,4 @@
   width: 22px;
   height: 12px;
   background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png');
-} */
+}
