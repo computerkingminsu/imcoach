@@ -19,6 +19,11 @@ import {
   NavbarDiv,
   LodingDiv,
   Loding,
+  DropdownContainer,
+  DropdownButton,
+  DropdownContent,
+  DropdownItem,
+  DropdownContent2,
 } from './LayoutHeader.styles';
 import 'firebase/auth';
 import { isLoggedIn, layoutEmail, useSsrComplectedState } from '../../../commons/globalstate/globalstate';
@@ -28,7 +33,7 @@ import { useRecoilValue } from 'recoil';
 import type { MenuProps } from 'antd';
 import { Dropdown } from 'antd';
 import { Spin } from 'antd';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 export default function LayoutHeader() {
   const login = useRecoilValue(isLoggedIn);
@@ -81,30 +86,57 @@ export default function LayoutHeader() {
   const onClickLogout = () => {
     authInstance.signOut();
   };
+  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen2, setIsOpen2] = useState(false);
   return (
     <Wrapper>
       <InnerWrapper>
         <NavWrapper>
-          <InnerLogo href="/">I'm coach</InnerLogo>
-          <LogoDiv href="/">
-            <LogoImg src="/Logo.png" />
-          </LogoDiv>
+          <Link href="/">
+            <InnerLogo>I'm coach</InnerLogo>
+          </Link>
+          <Link href="/">
+            <LogoDiv>
+              <LogoImg src="/Logo.png" />
+            </LogoDiv>
+          </Link>
+
           <NavDiv>
-            <Dropdown menu={{ items: regionitems }}>
-              <a onClick={(e) => e.preventDefault()}>
-                <Space>지역별</Space>
-              </a>
-            </Dropdown>
+            <DropdownContainer onMouseEnter={() => setIsOpen(true)} onMouseLeave={() => setIsOpen(false)}>
+              <DropdownButton>지역별</DropdownButton>
+              <DropdownContent isOpen={isOpen} isOpen2={false}>
+                <Link href="/region/seoul">
+                  <DropdownItem>서울</DropdownItem>
+                </Link>
+                <Link href="/region/gyeonggi">
+                  <DropdownItem>경기</DropdownItem>
+                </Link>
+                <Link href="/region/incheon">
+                  <DropdownItem>인천</DropdownItem>
+                </Link>
+              </DropdownContent>
+            </DropdownContainer>
           </NavDiv>
           <NavDiv>
-            <Dropdown menu={{ items: exerciseitems }}>
-              <a onClick={(e) => e.preventDefault()}>
-                <Space>운동별</Space>
-              </a>
-            </Dropdown>
+            <DropdownContainer onMouseEnter={() => setIsOpen2(true)} onMouseLeave={() => setIsOpen2(false)}>
+              <DropdownButton>운동별</DropdownButton>
+              <DropdownContent2 isOpen={false} isOpen2={isOpen2}>
+                <Link href="/exercise/workout">
+                  <DropdownItem>헬스</DropdownItem>
+                </Link>
+                <Link href="/exercise/golf">
+                  <DropdownItem>골프</DropdownItem>
+                </Link>
+                <Link href="/exercise/tennis">
+                  <DropdownItem>테니스</DropdownItem>
+                </Link>
+              </DropdownContent2>
+            </DropdownContainer>
           </NavDiv>
           <NavDiv>
-            <MenuItem onClick={onClickMoveToPage('/boards')}>커뮤니티</MenuItem>
+            <Link href="/boards">
+              <MenuItem>커뮤니티</MenuItem>
+            </Link>
           </NavDiv>
         </NavWrapper>
         {login === null ? (
@@ -135,21 +167,41 @@ export default function LayoutHeader() {
       </InnerWrapper>
       <Navbar>
         <NavbarDiv>
-          <Dropdown menu={{ items: regionitems }}>
-            <a onClick={(e) => e.preventDefault()}>
-              <Space>지역별</Space>
-            </a>
-          </Dropdown>
+          <DropdownContainer onMouseEnter={() => setIsOpen(true)} onMouseLeave={() => setIsOpen(false)}>
+            <DropdownButton>지역별</DropdownButton>
+            <DropdownContent isOpen={isOpen} isOpen2={false}>
+              <Link href="/region/seoul">
+                <DropdownItem>서울</DropdownItem>
+              </Link>
+              <Link href="/region/gyeonggi">
+                <DropdownItem>경기</DropdownItem>
+              </Link>
+              <Link href="/region/incheon">
+                <DropdownItem>인천</DropdownItem>
+              </Link>
+            </DropdownContent>
+          </DropdownContainer>
         </NavbarDiv>
         <NavbarDiv>
-          <Dropdown menu={{ items: exerciseitems }}>
-            <a onClick={(e) => e.preventDefault()}>
-              <Space>운동별</Space>
-            </a>
-          </Dropdown>
+          <DropdownContainer onMouseEnter={() => setIsOpen2(true)} onMouseLeave={() => setIsOpen2(false)}>
+            <DropdownButton>운동별</DropdownButton>
+            <DropdownContent2 isOpen={false} isOpen2={isOpen2}>
+              <Link href="/exercise/workout">
+                <DropdownItem>헬스</DropdownItem>
+              </Link>
+              <Link href="/exercise/golf">
+                <DropdownItem>골프</DropdownItem>
+              </Link>
+              <Link href="/exercise/tennis">
+                <DropdownItem>테니스</DropdownItem>
+              </Link>
+            </DropdownContent2>
+          </DropdownContainer>
         </NavbarDiv>
         <NavbarDiv>
-          <MenuItem onClick={onClickMoveToPage('/boards')}>커뮤니티</MenuItem>
+          <Link href="/boards">
+            <MenuItem onClick={onClickMoveToPage('/boards')}>커뮤니티</MenuItem>
+          </Link>
         </NavbarDiv>
       </Navbar>
     </Wrapper>

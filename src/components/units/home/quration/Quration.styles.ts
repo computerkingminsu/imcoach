@@ -33,7 +33,7 @@ export const QurationWrapper = styled.div`
   }
 `;
 
-export const QurationContents = styled.button`
+export const QurationContents = styled.a`
   width: 90px;
   height: 40px;
   display: flex;

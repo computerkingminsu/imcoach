@@ -10,6 +10,7 @@ import React from 'react';
 import { getAuth } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
 import Head from 'next/head';
+import Script from 'next/script';
 
 export const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -26,6 +27,10 @@ export const db = getFirestore(firebaseapp);
 export default function App({ Component, pageProps }: AppProps): JSX.Element {
   return (
     <>
+      <Script
+        src={`//dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.NEXT_PUBLIC_FIREBASE_KAKAO_KEY}&autoload=false`}
+        strategy="beforeInteractive"
+      />
       <Head>
         <title>I'm coach</title>
         <meta name="description" content="아임코치의 트레이너들을 만나보세요" />

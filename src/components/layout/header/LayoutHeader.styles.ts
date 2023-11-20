@@ -50,10 +50,7 @@ export const Navbar = styled.div`
   }
 `;
 
-export const NavbarDiv = styled.div`
-  @media only screen and (max-width: 480px) {
-  }
-`;
+export const NavbarDiv = styled.div``;
 export const InnerWrapper = styled.div`
   width: 1100px;
   display: flex;
@@ -93,6 +90,7 @@ export const InnerWrapper = styled.div`
 export const NavWrapper = styled.div`
   display: flex;
   flex-direction: row;
+  align-items: center;
 `;
 
 export const InnerLogo = styled.a`
@@ -103,6 +101,7 @@ export const InnerLogo = styled.a`
   font-weight: 900;
   cursor: pointer;
   margin-right: 50px;
+  margin-top: 3px;
   @media only screen and (max-width: 480px) {
     display: none;
   }
@@ -134,8 +133,7 @@ export const LogoImg = styled.img`
   }
 `;
 export const ButtonWrapper = styled.div`
-  @media only screen and (max-width: 480px) {
-  }
+  margin-top: 4px;
 `;
 export const InnerButton = styled.a`
   margin: 10px;
@@ -204,7 +202,7 @@ export const MypageLogout = styled.div`
   }
 `;
 
-export const MenuItem = styled.div`
+export const MenuItem = styled.a`
   //margin: 0px 80px;
   cursor: pointer;
   :hover {
@@ -239,6 +237,7 @@ export const NavDiv = styled.div`
   @media only screen and (min-width: 481px) and (max-width: 768px) {
     display: none;
   }
+  font-size: 18px;
 `;
 
 export const LodingDiv = styled.div`
@@ -247,4 +246,70 @@ export const LodingDiv = styled.div`
 
 export const Loding = styled.div`
   margin-left: 5px;
+`;
+
+export const DropdownContainer = styled.div`
+  position: relative;
+  display: inline-block;
+`;
+export const DropdownButton = styled.button`
+  background-color: white;
+  color: #6a75ca;
+  font-size: 18px;
+  border: none;
+  cursor: pointer;
+  @media only screen and (max-width: 480px) {
+    font-size: 15px;
+  }
+  @media only screen and (min-width: 481px) and (max-width: 768px) {
+    font-size: 15px;
+  }
+`;
+
+interface DropdownContentProps {
+  isOpen: boolean;
+  isOpen2: boolean;
+}
+
+export const DropdownContent = styled.div<DropdownContentProps>`
+  visibility: ${(props) => (props.isOpen ? 'visible' : 'hidden')};
+  opacity: ${(props) => (props.isOpen ? 1 : 0)};
+  transition: opacity 0.3s ease-out, transform 0.3s ease-out, visibility 0.3s ease-out;
+  position: absolute;
+  background-color: white;
+  min-width: 100px;
+  border-radius: 10px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  pointer-events: ${(props) => (props.isOpen ? 'all' : 'none')};
+`;
+
+export const DropdownContent2 = styled.div<DropdownContentProps>`
+  visibility: ${(props) => (props.isOpen2 ? 'visible' : 'hidden')};
+  opacity: ${(props) => (props.isOpen2 ? 1 : 0)};
+  transition: opacity 0.3s ease-out, transform 0.3s ease-out, visibility 0.3s ease-out;
+  position: absolute;
+  background-color: white;
+  min-width: 100px;
+  border-radius: 10px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  pointer-events: ${(props) => (props.isOpen2 ? 'all' : 'none')};
+`;
+export const DropdownItem = styled.a`
+  cursor: pointer;
+  color: #6a75ca;
+  padding: 12px 16px;
+  text-decoration: none;
+  font-size: 16px;
+  display: block;
+  &:hover {
+    background-color: #f1f1f1;
+  }
+  @media only screen and (max-width: 480px) {
+    font-size: 13px;
+  }
+  @media only screen and (min-width: 481px) and (max-width: 768px) {
+    font-size: 13px;
+  }
 `;

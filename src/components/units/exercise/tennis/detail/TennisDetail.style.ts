@@ -21,9 +21,10 @@ export const Wrapper = styled.div`
     padding-left: 9%;
   }
 `;
-export const DetailImage = styled.img`
+export const DetailImage = styled.div`
   border-radius: 20px;
   margin-bottom: auto;
+  overflow: hidden;
 `;
 
 export const Infor = styled.div`

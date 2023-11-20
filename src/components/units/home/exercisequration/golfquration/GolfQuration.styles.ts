@@ -42,11 +42,12 @@ export const PostWriter = styled.div`
   margin-top: 8px;
 `;
 
-export const PostImage = styled.img`
+export const PostImage = styled.div`
   margin-right: 6px;
   width: 270px;
   height: 175px;
   border-radius: 15px;
+  overflow: hidden;
 `;
 
 export const StyledSlider = styled(Slider)`

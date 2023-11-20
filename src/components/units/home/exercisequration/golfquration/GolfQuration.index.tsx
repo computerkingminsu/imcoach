@@ -16,8 +16,7 @@ import { useGetExercisePosts } from '../../../../hooks/useGetExercisePosts';
 import { useMoveToPage } from '../../../../hooks/useMoveToPage';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import { useEffect, useState } from 'react';
-import Slider from 'react-slick';
+import Image from 'next/image';
 
 export default function GolfQuration(): JSX.Element {
   const { posts } = useGetExercisePosts('golf');
@@ -63,7 +62,16 @@ export default function GolfQuration(): JSX.Element {
       <StyledSlider {...settings}>
         {posts.map((post: any) => (
           <Contents key={post.id} id={post.id} onClick={onClickMoveToPostDetail}>
-            <PostImage src={post.imgUrl} />
+            <PostImage>
+              <Image
+                src={post.imgUrl}
+                alt={post.title}
+                width={270}
+                height={175}
+                placeholder="blur"
+                blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFklEQVR42mN8//HLfwYiAOOoQvoqBABbWyZJf74GZgAAAABJRU5ErkJggg=="
+              />
+            </PostImage>
             <PostTitle>{post.title}</PostTitle>
             <PostPrice>{post.price}</PostPrice>
             <PostWriter>{post.writer}</PostWriter>

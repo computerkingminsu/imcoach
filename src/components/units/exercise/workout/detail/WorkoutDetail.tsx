@@ -7,6 +7,7 @@ import { Modal } from 'antd';
 import { addDoc, collection } from 'firebase/firestore';
 import { useRecoilState } from 'recoil';
 import { isLoggedIn } from '../../../../../commons/globalstate/globalstate';
+import Image from 'next/image';
 declare const window: typeof globalThis & {
   IMP: any;
 };
@@ -93,7 +94,9 @@ export default function WorkOutDetail(): JSX.Element {
         <script src="https://cdn.iamport.kr/v1/iamport.js"></script>
       </Head>
       <Wrapper>
-        <DetailImage src={post?.detailUrl} />
+        <DetailImage>
+          <Image src={post?.detailUrl || '/detailloading.png'} alt="Golf Detail" width={670} height={3000} />
+        </DetailImage>
         <Infor>
           <Title>{post?.title}</Title>
           <Price>{post?.price}</Price>
