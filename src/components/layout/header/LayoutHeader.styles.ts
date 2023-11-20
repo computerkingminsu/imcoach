@@ -253,7 +253,7 @@ export const DropdownContainer = styled.div`
   display: inline-block;
 `;
 export const DropdownButton = styled.button`
-  background-color: white;
+  background-color: transparent;
   color: #6a75ca;
   font-size: 18px;
   border: none;
