@@ -9,7 +9,7 @@ const ReactQuill = dynamic(async () => await import('react-quill'), {
   ssr: false,
 });
 
-export default function BoardEdit() {
+export default function BoardEdit(): JSX.Element  {
   const router = useRouter();
   const { onChangeContents, onChangeTitle, onClickSubmit } = useEditPost();
 

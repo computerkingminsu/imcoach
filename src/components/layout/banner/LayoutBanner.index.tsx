@@ -3,7 +3,7 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { SliderWrapper, Wrapper } from './LayoutBanner.styles';
 import React from 'react';
-export default function LayoutBanner() {
+export default function LayoutBanner(): JSX.Element  {
   const settings = {
     dots: true,
     infinite: true,

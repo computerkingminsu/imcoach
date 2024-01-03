@@ -34,13 +34,14 @@ import type { MenuProps } from 'antd';
 import { Dropdown } from 'antd';
 import { Spin } from 'antd';
 import { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
 
 export default function LayoutHeader(): JSX.Element {
   const login = useRecoilValue(isLoggedIn);
   const emailPrefix = useRecoilValue(layoutEmail);
   const setSsrCompleted = useSsrComplectedState();
   useEffect(setSsrCompleted, [setSsrCompleted]);
-
+  const router = useRouter();
   const { onClickMoveToPage } = useMoveToPage();
   const exerciseitems: MenuProps['items'] = [
     {
@@ -84,7 +85,16 @@ export default function LayoutHeader(): JSX.Element {
     },
   ];
   const onClickLogout = () => {
-    authInstance.signOut();
+    authInstance
+      .signOut()
+      .then(() => {
+        router.push('/').then(() => {
+          window.location.reload();
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
   const [isOpen, setIsOpen] = useState(false);
   const [isOpen2, setIsOpen2] = useState(false);

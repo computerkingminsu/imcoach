@@ -19,4 +19,6 @@ export const globalStyles = css`
     max-width: 100%;
     overflow-x: hidden;
   }
+
+  
 `;
