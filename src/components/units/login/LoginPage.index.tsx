@@ -11,9 +11,9 @@ export default function LoginPage(): JSX.Element {
     <Base>
       <Wrapper>
         <LoginHeadText>로그인</LoginHeadText>
-        <LoginText>이메일</LoginText>
+        <LoginText>* 이메일</LoginText>
         <LoginInput type="email" onChange={onChangeEmail} placeholder="example@imcoach.com"></LoginInput>
-        <LoginText>비밀번호</LoginText>
+        <LoginText>* 비밀번호</LoginText>
         <LoginInput type="password" onChange={onChangePassword} placeholder="******"></LoginInput>
         <LoginButton type="submit" onClick={onClickLogin}>
           로그인

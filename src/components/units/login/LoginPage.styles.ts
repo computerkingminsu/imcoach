@@ -22,36 +22,45 @@ export const LoginHeadText = styled.div`
   padding: 20px;
   text-align: center;
   font-size: 25px;
+  color: #6a75ca;
   font-weight: 900;
 `;
 
 export const LoginText = styled.div`
   height: 50px;
   width: 350px;
-  padding: 20px;
+  padding-top: 20px;
   text-align: left;
-  font-size: 15px;
+  font-size: 12px;
   font-weight: 600;
+  color: #6e6e6e;
+  margin-top: 20px;
 `;
 export const LoginInput = styled.input`
-  border-color: #f1f4f9;
-  border-radius: 7px;
-  height: 40px;
+  border: none; /* 테두리 없애기 */
+  border-bottom: 1px solid #6e6e6e; /* 아래쪽 테두리만 설정 */
+  border-radius: 0; /* border-radius 제거 */
+  height: 35px;
   width: 350px;
-  color: #3e4042;
+  outline: none;
+
+  &:focus {
+    border-bottom: 2px solid #6a75ca; /* 입력 필드에 포커스 됐을 때 밑줄 색상 변경 */
+  }
 `;
 
 export const LoginButton = styled.button`
-  background-color: #6a75ca;
-  border: #6a75ca;
+  background-color: white;
+  border: 1px solid #6a75ca;
   border-radius: 7px;
   height: 50px;
   width: 350px;
   margin-top: 30px;
   font-size: 14px;
-  color: white;
+  color: #6a75ca;
+
   cursor: pointer;
   :hover {
-    background-color: #5e68b5;
+    background-color: #eff2f8;
   }
 `;

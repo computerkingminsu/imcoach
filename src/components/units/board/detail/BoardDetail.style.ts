@@ -58,6 +58,8 @@ export const Header = styled.div`
 `;
 
 export const Title = styled.div`
+  padding-top: 10px;
+  padding-left: 8px;
   font-size: 30px;
   font-weight: 800;
 `;
@@ -69,6 +71,7 @@ export const WriterWrapper = styled.div`
   margin-top: 15px;
   display: flex;
   flex-direction: column;
+  padding-left: 8px;
 `;
 
 export const Writer = styled.span`
@@ -77,6 +80,7 @@ export const Writer = styled.span`
 
 export const Body = styled.div`
   min-height: 600px;
+  padding-left: 8px;
 `;
 
 export const Contents = styled.div`

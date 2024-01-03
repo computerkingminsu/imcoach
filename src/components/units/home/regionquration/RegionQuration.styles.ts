@@ -3,7 +3,6 @@ export const AreaWrapper = styled.div`
   width: 1100px;
   height: 60px;
   margin-top: 8px;
-  cursor: pointer;
   display: flex;
   justify-content: space-between;
   align-items: center;
