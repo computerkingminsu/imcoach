@@ -6,7 +6,7 @@ import { initializeApp } from 'firebase/app';
 import 'firebase/firestore';
 import { RecoilRoot } from 'recoil';
 import 'firebase/auth';
-import React from 'react';
+import React, { useState } from 'react';
 import { getAuth } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
 import Head from 'next/head';

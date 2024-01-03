@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
 import { UserCredential, signInWithEmailAndPassword } from 'firebase/auth';
 
 import { useRouter } from 'next/router';
@@ -43,6 +43,8 @@ export const useLogin = () => {
 
     signInWithEmailAndPassword(authInstance, email, password)
       .then((userCredential: UserCredential) => {
+        const currentTime: number = new Date().getTime();
+
         const user = userCredential.user;
         const email = user.email;
         setUserEmail(email);
@@ -50,14 +52,20 @@ export const useLogin = () => {
         const emailPrefix = atIndex !== -1 ? email?.substring(0, atIndex) : email;
         setLayoutEmail(emailPrefix);
         setLogin(true);
-
         success();
         router.push('/');
+        setTimeout(() => {
+          alert('로그인 세션이 만료 되었습니다.');
+          setLogin(false);
+          setLayoutEmail(null);
+          setUserEmail(null);
+        }, 3600000);
       })
       .catch((error: any) => {
         loginError();
       });
   };
+
   return {
     onChangeEmail,
     onChangePassword,
