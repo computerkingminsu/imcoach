@@ -37,3 +37,9 @@ export const layoutEmail = atom<string | null | undefined>({
   default: null,
   effects_UNSTABLE: [persistAtomEffect],
 });
+
+export const userEmail = atom<string | null | undefined>({
+  key: 'userEmail',
+  default: null,
+  effects_UNSTABLE: [persistAtomEffect],
+});

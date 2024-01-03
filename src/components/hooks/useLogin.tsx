@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
 import { authInstance } from '../../../pages/_app';
 import { Modal } from 'antd';
 import { useRecoilState } from 'recoil';
-import { isLoggedIn, layoutEmail } from '../../commons/globalstate/globalstate';
+import { isLoggedIn, layoutEmail, userEmail } from '../../commons/globalstate/globalstate';
 
 export const useLogin = () => {
   const [email, setEmail] = useState('');
@@ -13,7 +13,7 @@ export const useLogin = () => {
   const [checkPassword, setCheckPassword] = useState('');
   const [, setLogin] = useRecoilState<boolean | null>(isLoggedIn);
   const [, setLayoutEmail] = useRecoilState<string | null | undefined>(layoutEmail);
-  const [userEmail, setUserEmail] = useState<string | null>(null);
+  const [, setUserEmail] = useRecoilState<string | null | undefined>(userEmail);
 
   const router = useRouter();
   const onChangeEmail = (event: ChangeEvent<HTMLInputElement>): void => {

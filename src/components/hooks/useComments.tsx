@@ -14,8 +14,8 @@ import {
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { authInstance, db } from '../../../pages/_app';
-import { useRecoilState } from 'recoil';
-import { isLoggedIn } from '../../commons/globalstate/globalstate';
+import { useRecoilState, useRecoilValue } from 'recoil';
+import { isLoggedIn, userEmail } from '../../commons/globalstate/globalstate';
 import { Modal } from 'antd';
 
 interface Comment {
@@ -33,6 +33,8 @@ export const useComments = (menu: string) => {
   const [login] = useRecoilState(isLoggedIn);
   const [newComment, setNewComment] = useState<string>('');
   const { confirm } = Modal;
+  const [commentusermatch, setCommentUserMatch] = useState(false);
+
   const user = authInstance.currentUser;
   const email = user?.email;
   const getComments = async () => {
@@ -49,12 +51,18 @@ export const useComments = (menu: string) => {
   const success = () => {
     Modal.success({
       content: '댓글 등록에 성공하였습니다!',
+      onOk: () => {
+        window.location.reload();
+      },
     });
   };
 
   const deletemodal = () => {
     Modal.success({
       content: '댓글 삭제에 성공하였습니다!',
+      onOk: () => {
+        window.location.reload();
+      },
     });
   };
 
@@ -64,7 +72,6 @@ export const useComments = (menu: string) => {
     });
   };
   useEffect(() => {
-    console.log(postId);
     if (postId) {
       getComments();
     }
@@ -80,7 +87,6 @@ export const useComments = (menu: string) => {
         email,
       });
       success();
-      window.location.reload();
     } else {
       addDocError();
     }
@@ -89,7 +95,7 @@ export const useComments = (menu: string) => {
   const deleteComment = async (commentId: any) => {
     const comments: any = doc(db, 'comment', commentId);
     await deleteDoc(comments);
-    window.location.reload();
+    deletemodal();
   };
 
   return {
@@ -101,3 +107,6 @@ export const useComments = (menu: string) => {
     deletemodal,
   };
 };
+function setUserMatch(arg0: boolean) {
+  throw new Error('Function not implemented.');
+}

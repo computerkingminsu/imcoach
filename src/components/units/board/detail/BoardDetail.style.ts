@@ -76,6 +76,8 @@ export const WriterWrapper = styled.div`
 
 export const Writer = styled.span`
   margin-bottom: 5px;
+  display: flex;
+  justify-content: space-between;
 `;
 
 export const Body = styled.div`
@@ -88,7 +90,8 @@ export const Contents = styled.div`
 `;
 
 export const EditWrapper = styled.div`
-  font-size: 18px;
+  font-size: 16px;
+  padding-right: 10px;
 `;
 export const EditIcon = styled(EditOutlined)``;
 

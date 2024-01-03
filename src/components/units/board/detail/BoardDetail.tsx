@@ -8,6 +8,8 @@ import { Modal } from 'antd';
 import { ExclamationCircleFilled } from '@ant-design/icons';
 import { useComments } from '../../../hooks/useComments';
 import { useLogin } from '../../../hooks/useLogin';
+import { userEmail } from '../../../../commons/globalstate/globalstate';
+import { RecoilState, useRecoilValue } from 'recoil';
 
 interface Comment {
   id: string;
@@ -24,8 +26,7 @@ export default function BoardDetail(): JSX.Element {
   const { onClickDeletePost } = useDeletePost();
   const { comments, newComment, setNewComment, addComment, deleteComment } = useComments('comment');
   const { confirm } = Modal;
-  const [commentsUsermatch, setCommentsUserMatch] = useState(false);
-  const { userEmail } = useLogin();
+  const logEmail = useRecoilValue(userEmail);
 
   const showDeleteConfirm = () => {
     confirm({
@@ -44,7 +45,6 @@ export default function BoardDetail(): JSX.Element {
   const timestamp = post?.timestamp;
 
   const formattedTimestamp = timestamp ? new Date(timestamp.toMillis()).toLocaleString() : null;
-  console.log(commentsUsermatch);
 
   return (
     <S.Wrapper>
@@ -53,13 +53,15 @@ export default function BoardDetail(): JSX.Element {
           <S.Title>{post?.title}</S.Title>
           <S.WriterWrapper>
             <S.Writer>{formattedTimestamp}</S.Writer>
-            <S.Writer>작성자: {post?.email}</S.Writer>
-            {usermatch ? (
-              <S.EditWrapper>
-                <S.EditIcon onClick={onClickMoveToPage(`${postId}/edit`)} rev={undefined} />
-                <S.DeleteIcon onClick={showDeleteConfirm} rev={undefined} />
-              </S.EditWrapper>
-            ) : null}
+            <S.Writer>
+              <>작성자: {post?.email}</>
+              {post?.email == logEmail ? (
+                <S.EditWrapper>
+                  <S.EditIcon onClick={onClickMoveToPage(`${postId}/edit`)} rev={undefined} />
+                  <S.DeleteIcon onClick={showDeleteConfirm} rev={undefined} />
+                </S.EditWrapper>
+              ) : null}
+            </S.Writer>
           </S.WriterWrapper>
         </S.Header>
         <S.Body>
@@ -85,7 +87,7 @@ export default function BoardDetail(): JSX.Element {
             <S.Row key={comment.id}>
               <S.CommentsButton>
                 <S.Comments key={comment.id}>{comment.text}</S.Comments>
-                {comment.email === userEmail ? (
+                {comment.email === logEmail ? (
                   <S.CommentsEditWrapper>
                     <S.CommentsDeleteIcon rev={undefined} onClick={() => deleteComment(comment.id)} />
                   </S.CommentsEditWrapper>

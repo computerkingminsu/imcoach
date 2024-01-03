@@ -26,10 +26,10 @@ import {
   DropdownContent2,
 } from './LayoutHeader.styles';
 import 'firebase/auth';
-import { isLoggedIn, layoutEmail, useSsrComplectedState } from '../../../commons/globalstate/globalstate';
+import { isLoggedIn, layoutEmail, useSsrComplectedState, userEmail } from '../../../commons/globalstate/globalstate';
 import { authInstance } from '../../../../pages/_app';
 import { useMoveToPage } from '../../hooks/useMoveToPage';
-import { useRecoilValue } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import type { MenuProps } from 'antd';
 import { Dropdown } from 'antd';
 import { Spin } from 'antd';
@@ -43,6 +43,10 @@ export default function LayoutHeader(): JSX.Element {
   useEffect(setSsrCompleted, [setSsrCompleted]);
   const router = useRouter();
   const { onClickMoveToPage } = useMoveToPage();
+  const [, setLogin] = useRecoilState<boolean | null>(isLoggedIn);
+  const [, setLayoutEmail] = useRecoilState<string | null | undefined>(layoutEmail);
+  const [, setUserEmail] = useRecoilState<string | null | undefined>(userEmail);
+
   const exerciseitems: MenuProps['items'] = [
     {
       key: '1',
@@ -88,8 +92,13 @@ export default function LayoutHeader(): JSX.Element {
     authInstance
       .signOut()
       .then(() => {
+        setLogin(null); // Recoil 상태를 초기화
+        setLayoutEmail(null);
+        setUserEmail(null);
+
+        localStorage.removeItem('recoil-persist'); // 로컬 스토리지에서 Recoil 상태 제거
         router.push('/').then(() => {
-          window.location.reload();
+          window.location.reload(); // 페이지 새로 고침은 모든 상태 업데이트가 완료된 후 수행
         });
       })
       .catch((error) => {

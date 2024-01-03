@@ -4,13 +4,15 @@ import { db } from '../../../pages/_app';
 import { useRouter } from 'next/router';
 // import { useAuth } from './useAuth';
 import { useLogin } from './useLogin';
+import { userEmail } from '../../commons/globalstate/globalstate';
+import { useRecoilValue } from 'recoil';
 
 interface Post extends DocumentData {
   email?: string;
 }
 
 export const useGetDetailPost = (menu: string) => {
-  const { userEmail } = useLogin();
+  const logEmail = useRecoilValue(userEmail);
   const [post, setPost] = useState<Post | null>(null);
   const [usermatch, setUserMatch] = useState(false);
 
@@ -27,7 +29,7 @@ export const useGetDetailPost = (menu: string) => {
 
         if (postDoc.exists()) {
           setPost(postDoc.data());
-          if (userEmail === postDoc.data().email) {
+          if (logEmail === postDoc.data().email) {
             setUserMatch(true);
           }
         } else {
@@ -36,7 +38,7 @@ export const useGetDetailPost = (menu: string) => {
       };
       getPost();
     }
-  }, [router.isReady, userEmail]);
+  }, [router.isReady, logEmail]);
 
   return { post, usermatch };
 };
