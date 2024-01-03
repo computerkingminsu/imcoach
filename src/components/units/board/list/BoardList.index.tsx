@@ -10,10 +10,10 @@ import { Spin } from 'antd';
 import { isLoggedIn } from '../../../../commons/globalstate/globalstate';
 
 interface Post {
-  title: string;
-  contents: string;
+  title?: string;
+  contents?: string;
   id: string;
-  email: string;
+  email?: string;
 }
 
 export default function BoardList(): JSX.Element {
@@ -47,17 +47,17 @@ export default function BoardList(): JSX.Element {
         ? // 검색 결과가 없거나 searchResults가 null일 때
           posts.map((post: Post) => (
             <S.Row key={post.id} id={post.id} onClick={onClickMoveToBoardDetail}>
-              <S.Title>{post.title}</S.Title>
-              <S.Contents dangerouslySetInnerHTML={{ __html: post.contents }} />
-              <S.Writer>작성자: {post.email}</S.Writer>
+              <S.Title>{post.title || ''}</S.Title>
+              <S.Contents dangerouslySetInnerHTML={{ __html: post.contents || '' }} />
+              <S.Writer>작성자: {post.email || ''}</S.Writer>
             </S.Row>
           ))
         : // 검색 결과가 있을 때
           searchResults.map((post: Post) => (
             <S.Row key={post.id} id={post.id} onClick={onClickMoveToBoardDetail}>
-              <S.Title>{post.title}</S.Title>
-              <S.Contents dangerouslySetInnerHTML={{ __html: post.contents }} />
-              <S.Writer>작성자: {post.email}</S.Writer>
+              <S.Title>{post.title || ''}</S.Title>
+              <S.Contents dangerouslySetInnerHTML={{ __html: post.contents || '' }} />
+              <S.Writer>작성자: {post.email || ''}</S.Writer>
             </S.Row>
           ))}
       <S.SpinDiv>{hasMore && loading && <Spin size="large" />}</S.SpinDiv>

@@ -1,5 +1,5 @@
 import { ChangeEvent, useState } from 'react';
-import { signInWithEmailAndPassword } from 'firebase/auth';
+import { UserCredential, signInWithEmailAndPassword } from 'firebase/auth';
 
 import { useRouter } from 'next/router';
 import { authInstance } from '../../../pages/_app';
@@ -11,9 +11,9 @@ export const useLogin = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [checkPassword, setCheckPassword] = useState('');
-  const [, setLogin]: any = useRecoilState(isLoggedIn);
-  const [, setLayoutEmail] = useRecoilState(layoutEmail);
-  const [userEmail, setUserEmail] = useState(null);
+  const [, setLogin] = useRecoilState<boolean | null>(isLoggedIn);
+  const [, setLayoutEmail] = useRecoilState<string | null | undefined>(layoutEmail);
+  const [userEmail, setUserEmail] = useState<string | null>(null);
 
   const router = useRouter();
   const onChangeEmail = (event: ChangeEvent<HTMLInputElement>): void => {
@@ -38,12 +38,11 @@ export const useLogin = () => {
     });
   };
 
-  const onClickLogin = (event: any) => {
+  const onClickLogin = (event: React.FormEvent) => {
     event.preventDefault();
 
     signInWithEmailAndPassword(authInstance, email, password)
-      .then((userCredential: any) => {
-        // Signed in
+      .then((userCredential: UserCredential) => {
         const user = userCredential.user;
         const email = user.email;
         setUserEmail(email);
@@ -51,15 +50,12 @@ export const useLogin = () => {
         const emailPrefix = atIndex !== -1 ? email?.substring(0, atIndex) : email;
         setLayoutEmail(emailPrefix);
         setLogin(true);
-        // ...
+
         success();
         router.push('/');
       })
       .catch((error: any) => {
         loginError();
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        // ..
       });
   };
   return {
@@ -70,6 +66,3 @@ export const useLogin = () => {
     userEmail,
   };
 };
-function setLayoutEmail(emailPrefix: any) {
-  throw new Error('Function not implemented.');
-}

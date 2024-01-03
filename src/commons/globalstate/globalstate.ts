@@ -26,13 +26,13 @@ export const persistAtomEffect = <T>(param: Parameters<AtomEffect<T>>[0]) => {
   param.getPromise(ssrCompletedState).then(() => persistAtom(param));
 };
 
-export const isLoggedIn = atom({
+export const isLoggedIn = atom<boolean | null>({
   key: 'isLoggedIn',
   default: null,
   effects_UNSTABLE: [persistAtomEffect],
 });
 
-export const layoutEmail = atom({
+export const layoutEmail = atom<string | null | undefined>({
   key: 'layoutEmail',
   default: null,
   effects_UNSTABLE: [persistAtomEffect],

@@ -1,4 +1,16 @@
-import { Firestore, addDoc, collection, deleteDoc, doc, getDocs, orderBy, query, where } from 'firebase/firestore';
+import {
+  DocumentData,
+  Firestore,
+  QueryDocumentSnapshot,
+  addDoc,
+  collection,
+  deleteDoc,
+  doc,
+  getDocs,
+  orderBy,
+  query,
+  where,
+} from 'firebase/firestore';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { authInstance, db } from '../../../pages/_app';
@@ -6,22 +18,31 @@ import { useRecoilState } from 'recoil';
 import { isLoggedIn } from '../../commons/globalstate/globalstate';
 import { Modal } from 'antd';
 
+interface Comment {
+  id: string;
+  text?: string;
+  email?: string;
+}
+
 export const useComments = (menu: string) => {
   const router = useRouter();
   const data = JSON.stringify(router.query); // boardId를 추출
   const jsonObject = JSON.parse(data);
   const postId = jsonObject.boadid;
-  const [comments, setComments]: any = useState([]);
+  const [comments, setComments] = useState<Comment[]>([]);
   const [login] = useRecoilState(isLoggedIn);
-  const [newComment, setNewComment] = useState('');
+  const [newComment, setNewComment] = useState<string>('');
   const { confirm } = Modal;
   const user = authInstance.currentUser;
-  const email: any = user?.email;
+  const email = user?.email;
   const getComments = async () => {
     let q;
     q = query(collection(db, menu), orderBy('timestamp', 'desc'), where('postId', '==', postId));
-    const snapshot: any = await getDocs(q);
-    const commentsArr: any = snapshot.docs.map((doc: any) => ({ ...doc.data(), id: doc.id }));
+    const snapshot = await getDocs(q);
+    const commentsArr = snapshot.docs.map((doc: QueryDocumentSnapshot<DocumentData>) => ({
+      ...doc.data(),
+      id: doc.id,
+    }));
     setComments(commentsArr);
   };
 

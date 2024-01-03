@@ -1,10 +1,14 @@
 import { useEffect, useState } from 'react';
-import { collection, doc, getDoc, query, where } from 'firebase/firestore';
+import { DocumentData, collection, doc, getDoc, query, where } from 'firebase/firestore';
 import { db } from '../../../pages/_app';
 import { useRouter } from 'next/router';
 
+interface Post extends DocumentData {
+  email?: string;
+}
+
 export const useGetExerciseDetailPost = (menu: string) => {
-  const [post, setPost] = useState(null);
+  const [post, setPost] = useState<Post | null>(null);
 
   const router = useRouter();
   const data = JSON.stringify(router.query); // boardId를 추출
@@ -15,7 +19,7 @@ export const useGetExerciseDetailPost = (menu: string) => {
     if (router.isReady) {
       const getPost = async () => {
         const postRef = doc(db, menu, postId); // menu와 boardId를 사용하여 문서에 접근
-        const postDoc: any = await getDoc(postRef);
+        const postDoc = await getDoc(postRef);
 
         if (postDoc.exists()) {
           setPost(postDoc.data());

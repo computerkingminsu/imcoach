@@ -7,18 +7,22 @@ import { useDeletePost } from '../../../hooks/useDeletePost';
 import { Modal } from 'antd';
 import { ExclamationCircleFilled } from '@ant-design/icons';
 import { useComments } from '../../../hooks/useComments';
-// import { useAuth } from '../../../hooks/coustoms/useAuth';
 import { useLogin } from '../../../hooks/useLogin';
 
+interface Comment {
+  id: string;
+  text?: string;
+  email?: string;
+}
 export default function BoardDetail(): JSX.Element {
   const router = useRouter();
   const data = JSON.stringify(router.query); // boardId를 추출
   const jsonObject = JSON.parse(data);
   const postId = jsonObject.boadid;
-  const { post, usermatch }: any = useGetDetailPost('board');
+  const { post, usermatch } = useGetDetailPost('board');
   const { onClickMoveToPage } = useMoveToPage();
   const { onClickDeletePost } = useDeletePost();
-  const { comments, newComment, setNewComment, addComment, deleteComment }: any = useComments('comment');
+  const { comments, newComment, setNewComment, addComment, deleteComment } = useComments('comment');
   const { confirm } = Modal;
   const [commentsUsermatch, setCommentsUserMatch] = useState(false);
   const { userEmail } = useLogin();
@@ -77,7 +81,7 @@ export default function BoardDetail(): JSX.Element {
         </>
 
         <>
-          {comments.map((comment: any) => (
+          {comments.map((comment: Comment) => (
             <S.Row key={comment.id}>
               <S.CommentsButton>
                 <S.Comments key={comment.id}>{comment.text}</S.Comments>

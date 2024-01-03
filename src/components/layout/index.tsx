@@ -15,7 +15,7 @@ const Body = styled.div`
   justify-content: center;
 `;
 
-export default function Layout(props: ILayoutProps) {
+export default function Layout(props: ILayoutProps): JSX.Element {
   useAuth();
   return (
     <>

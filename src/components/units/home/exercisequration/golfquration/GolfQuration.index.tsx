@@ -23,7 +23,7 @@ export default function GolfQuration(): JSX.Element {
   const { onClickMoveToPage } = useMoveToPage();
   const router = useRouter();
 
-  const onClickMoveToPostDetail = (event: any): void => {
+  const onClickMoveToPostDetail = (event: React.MouseEvent<HTMLDivElement>): void => {
     router.push(`/exercise/golf/${event.currentTarget.id}`);
   };
   let settings = {

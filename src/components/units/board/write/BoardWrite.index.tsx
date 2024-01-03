@@ -9,7 +9,7 @@ const ReactQuill = dynamic(async () => await import('react-quill'), {
   ssr: false,
 });
 
-export default function BoardWrite() {
+export default function BoardWrite(): JSX.Element {
   const { onChangeContents, onChangeTitle, onClickSubmit } = useWritePost();
   const { onClickMoveToPage } = useMoveToPage();
 

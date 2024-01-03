@@ -15,12 +15,20 @@ import {
 } from './GolfPage.styles';
 import Image from 'next/image';
 
+interface Post {
+  id: string;
+  imgUrl?: string;
+  title?: string;
+  price?: string;
+  writer?: string;
+}
+
 export default function GolfPage(): JSX.Element {
   const { posts } = useGetExercisePosts('golf');
   const { onClickMoveToPage } = useMoveToPage();
   const router = useRouter();
 
-  const onClickMoveToPostDetail = (event: any): void => {
+  const onClickMoveToPostDetail = (event: React.MouseEvent<HTMLDivElement>): void => {
     router.push(`/exercise/golf/${event.currentTarget.id}`);
   };
   return (
@@ -31,11 +39,14 @@ export default function GolfPage(): JSX.Element {
         <Sidebarlist onClick={onClickMoveToPage('/exercise/tennis')}>테니스</Sidebarlist>
       </Sidebar>
       <ContentsWrapper>
-        {posts.map((post: any) => (
+        {posts.map((post: Post) => (
           <Contents key={post.id} id={post.id} onClick={onClickMoveToPostDetail}>
             <PostImage>
               <Image
-                src={post.imgUrl}
+                src={
+                  post.imgUrl ||
+                  'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFklEQVR42mN8//HLfwYiAOOoQvoqBABbWyZJf74GZgAAAABJRU5ErkJggg=='
+                }
                 alt={post.title}
                 width={270}
                 height={175}

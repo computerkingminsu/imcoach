@@ -40,7 +40,7 @@ export const useSignup = () => {
       title: '비밀번호가 일치하지 않습니다.',
     });
   };
-  const onClickSignup = (event: any) => {
+  const onClickSignup = (event: React.FormEvent) => {
     event.preventDefault();
     if (password !== checkPassword) {
       passwordError();

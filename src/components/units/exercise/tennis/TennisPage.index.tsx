@@ -14,11 +14,20 @@ import {
   Wrapper,
 } from './TennisPage.styles';
 import Image from 'next/image';
+
+interface Post {
+  id: string;
+  imgUrl?: string;
+  title?: string;
+  price?: string;
+  writer?: string;
+}
+
 export default function TennisPage(): JSX.Element {
   const { posts } = useGetExercisePosts('tennis');
   const { onClickMoveToPage } = useMoveToPage();
   const router = useRouter();
-  const onClickMoveToPostDetail = (event: any): void => {
+  const onClickMoveToPostDetail = (event: React.MouseEvent<HTMLDivElement>): void => {
     router.push(`/exercise/tennis/${event.currentTarget.id}`);
   };
   return (
@@ -29,11 +38,14 @@ export default function TennisPage(): JSX.Element {
         <SidebarSelect>테니스</SidebarSelect>
       </Sidebar>
       <ContentsWrapper>
-        {posts.map((post: any) => (
+        {posts.map((post: Post) => (
           <Contents key={post.id} id={post.id} onClick={onClickMoveToPostDetail}>
             <PostImage>
               <Image
-                src={post.imgUrl}
+                src={
+                  post.imgUrl ||
+                  'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFklEQVR42mN8//HLfwYiAOOoQvoqBABbWyZJf74GZgAAAABJRU5ErkJggg=='
+                }
                 alt={post.title}
                 width={270}
                 height={175}

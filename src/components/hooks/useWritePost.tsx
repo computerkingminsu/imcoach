@@ -10,7 +10,7 @@ export const useWritePost = () => {
   const [contents, setContents] = useState('');
   const router = useRouter();
   const user = authInstance.currentUser;
-  const email: any = user?.email;
+  const email: string | null | undefined = user?.email;
 
   const success = () => {
     Modal.success({

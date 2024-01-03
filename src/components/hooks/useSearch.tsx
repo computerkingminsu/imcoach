@@ -1,9 +1,24 @@
 import { useState, useEffect } from 'react';
-import { getFirestore, collection, query, where, orderBy, startAt, endAt, getDocs } from 'firebase/firestore';
+import {
+  getFirestore,
+  collection,
+  query,
+  where,
+  orderBy,
+  startAt,
+  endAt,
+  getDocs,
+  DocumentData,
+} from 'firebase/firestore';
 import { db, firebaseapp } from '../../../pages/_app';
 
+interface SearchResult extends DocumentData {
+  id: string;
+  title?: string;
+}
+
 export const useFirebaseSearch = (collectionName: string, searchTerm: string) => {
-  const [searchResults, setSearchResults] = useState([]);
+  const [searchResults, setSearchResults] = useState<SearchResult[]>([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -17,7 +32,7 @@ export const useFirebaseSearch = (collectionName: string, searchTerm: string) =>
 
         const snapshot = await getDocs(q);
         // const searchData: any = snapshot.docs.map((doc) => doc.data());
-        const searchData: any = snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
+        const searchData: SearchResult[] = snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
         setSearchResults(searchData);
       } catch (error) {
         console.error('검색 중 오류 발생:', error);

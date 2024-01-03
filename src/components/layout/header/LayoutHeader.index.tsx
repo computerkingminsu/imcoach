@@ -35,7 +35,7 @@ import { Dropdown } from 'antd';
 import { Spin } from 'antd';
 import { useEffect, useState } from 'react';
 
-export default function LayoutHeader() {
+export default function LayoutHeader(): JSX.Element {
   const login = useRecoilValue(isLoggedIn);
   const emailPrefix = useRecoilValue(layoutEmail);
   const setSsrCompleted = useSsrComplectedState();
