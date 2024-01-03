@@ -6,7 +6,7 @@ import GolfQuration from './exercisequration/golfquration/GolfQuration.index';
 import TennisQuration from './exercisequration/tennisquration/TennisQuration.index';
 import RegionQuration from './regionquration/RegionQuration.index';
 
-export default function HomePage() {
+export default function HomePage(): JSX.Element {
   const Wrapper = styled.div`
     display: flex;
     flex-direction: column;

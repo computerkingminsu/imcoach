@@ -4,7 +4,7 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { kakaoKey } from '../../../../../pages/_app';
 
-export default function Map() {
+export default function Map(): JSX.Element {
   const router = useRouter();
   useEffect(() => {
     // 맵 만들기 ===================================

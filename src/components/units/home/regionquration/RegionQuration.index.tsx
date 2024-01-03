@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { AreaContents, AreaImage, AreaWrapper } from './RegionQuration.styles';
 import Image from 'next/image';
 
-export default function RegionQuration() {
+export default function RegionQuration(): JSX.Element {
   return (
     <AreaWrapper>
       <Link href="/region/seoul">

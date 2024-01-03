@@ -18,12 +18,20 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import Image from 'next/image';
 
+interface Post {
+  id: string;
+  imgUrl?: string;
+  title?: string;
+  price?: string;
+  writer?: string;
+}
+
 export default function TennisQuration(): JSX.Element {
   const { posts } = useGetExercisePosts('tennis');
   const { onClickMoveToPage } = useMoveToPage();
   const router = useRouter();
 
-  const onClickMoveToPostDetail = (event: any): void => {
+  const onClickMoveToPostDetail = (event: React.MouseEvent<HTMLDivElement>): void => {
     router.push(`/exercise/tennis/${event.currentTarget.id}`);
   };
   let settings = {
@@ -59,11 +67,14 @@ export default function TennisQuration(): JSX.Element {
     <Wrapper>
       <Title>스트로크와 스피드의 완벽한 조화를 찾아가세요 🎾</Title>
       <StyledSlider {...settings}>
-        {posts.map((post: any) => (
+        {posts.map((post: Post) => (
           <Contents key={post.id} id={post.id} onClick={onClickMoveToPostDetail}>
             <PostImage>
               <Image
-                src={post.imgUrl}
+                src={
+                  post.imgUrl ||
+                  'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFklEQVR42mN8//HLfwYiAOOoQvoqBABbWyZJf74GZgAAAABJRU5ErkJggg=='
+                }
                 alt={post.title}
                 width={270}
                 height={175}

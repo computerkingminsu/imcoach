@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { useMoveToPage } from '../../../hooks/useMoveToPage';
 import { QurationWrapper, QurationContents, QurationImage } from './Quration.styles';
 
-export default function Quration() {
+export default function Quration(): JSX.Element {
   const { onClickMoveToPage } = useMoveToPage();
   return (
     <>

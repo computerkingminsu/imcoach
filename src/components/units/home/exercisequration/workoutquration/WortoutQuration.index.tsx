@@ -18,6 +18,14 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import Image from 'next/image';
 
+interface Post {
+  id: string;
+  imgUrl?: string;
+  title?: string;
+  price?: string;
+  writer?: string;
+}
+
 export default function WorkoutQuration(): JSX.Element {
   const { posts } = useGetExercisePosts('workout');
   const { onClickMoveToPage } = useMoveToPage();
@@ -60,11 +68,14 @@ export default function WorkoutQuration(): JSX.Element {
     <Wrapper>
       <Title>열정적인 여러분들을 위한 맞춤 헬스 코치 💪</Title>
       <StyledSlider {...settings}>
-        {posts.map((post: any) => (
+        {posts.map((post: Post) => (
           <Contents key={post.id} id={post.id} onClick={onClickMoveToPostDetail}>
             <PostImage>
               <Image
-                src={post.imgUrl}
+                src={
+                  post.imgUrl ||
+                  'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFklEQVR42mN8//HLfwYiAOOoQvoqBABbWyZJf74GZgAAAABJRU5ErkJggg=='
+                }
                 alt={post.title}
                 width={270}
                 height={175}

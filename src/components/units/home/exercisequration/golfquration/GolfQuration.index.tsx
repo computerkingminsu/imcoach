@@ -18,6 +18,14 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import Image from 'next/image';
 
+interface Post {
+  id: string;
+  imgUrl?: string;
+  title?: string;
+  price?: string;
+  writer?: string;
+}
+
 export default function GolfQuration(): JSX.Element {
   const { posts } = useGetExercisePosts('golf');
   const { onClickMoveToPage } = useMoveToPage();
@@ -60,11 +68,14 @@ export default function GolfQuration(): JSX.Element {
     <Wrapper>
       <Title>정교한 스윙과 아름다운 코스를 누리세요 ⛳</Title>
       <StyledSlider {...settings}>
-        {posts.map((post: any) => (
+        {posts.map((post: Post) => (
           <Contents key={post.id} id={post.id} onClick={onClickMoveToPostDetail}>
             <PostImage>
               <Image
-                src={post.imgUrl}
+                src={
+                  post.imgUrl ||
+                  'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFklEQVR42mN8//HLfwYiAOOoQvoqBABbWyZJf74GZgAAAABJRU5ErkJggg=='
+                }
                 alt={post.title}
                 width={270}
                 height={175}

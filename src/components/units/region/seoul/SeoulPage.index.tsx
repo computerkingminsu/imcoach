@@ -14,7 +14,7 @@ import { useRouter } from 'next/router';
 import { kakaoKey } from '../../../../../pages/_app';
 import Link from 'next/link';
 
-export default function SeoulPage() {
+export default function SeoulPage(): JSX.Element {
   const router = useRouter();
   useEffect(() => {
     // 맵 만들기 ===================================

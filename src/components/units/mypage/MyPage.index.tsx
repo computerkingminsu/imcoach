@@ -3,16 +3,24 @@ import { Pay, PayList, SubTitle, Title, Wrapper } from './MyPage.styles';
 import { authInstance, db } from '../../../../pages/_app';
 import { useEffect, useState } from 'react';
 
-export default function MyPage() {
-  const [payments, setPayments]: any = useState([]);
+interface Payment {
+  id: string;
+  merchant_uid?: string;
+  name?: string;
+  paid_amount?: number;
+  timestamp: Date;
+}
+
+export default function MyPage(): JSX.Element {
+  const [payments, setPayments] = useState<Payment[]>([]);
   const user = authInstance.currentUser;
-  const email: any = user?.email;
+  const email = user?.email;
   useEffect(() => {
     const getPayments = async () => {
       if (email) {
         const q = query(collection(db, 'payment'), orderBy('timestamp', 'desc'), where('buyer_email', '==', email));
-        const snapshot: any = await getDocs(q);
-        const payArr: any = snapshot.docs.map((doc: any) => {
+        const snapshot = await getDocs(q);
+        const payArr: Payment[] = snapshot.docs.map((doc) => {
           const data = doc.data();
           return {
             ...data,
@@ -36,7 +44,7 @@ export default function MyPage() {
         <Pay>결제금액</Pay>
         <Pay>결제일시</Pay>
       </PayList>
-      {payments.map((payment: any) => (
+      {payments.map((payment: Payment) => (
         <PayList key={payment.id}>
           <Pay>{payment.merchant_uid}</Pay>
           <Pay>{payment.name}</Pay>
