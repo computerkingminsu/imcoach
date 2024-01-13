@@ -4,8 +4,8 @@ import { UserCredential, signInWithEmailAndPassword } from 'firebase/auth';
 import { useRouter } from 'next/router';
 import { authInstance } from '../../../pages/_app';
 import { Modal } from 'antd';
-import { useRecoilState } from 'recoil';
-import { isLoggedIn, layoutEmail, userEmail } from '../../commons/globalstate/globalstate';
+import { useRecoilState, useRecoilValue } from 'recoil';
+import { autoLogin, isLoggedIn, layoutEmail, userEmail } from '../../commons/globalstate/globalstate';
 
 export const useLogin = () => {
   const [email, setEmail] = useState('');
@@ -14,7 +14,7 @@ export const useLogin = () => {
   const [, setLogin] = useRecoilState<boolean | null>(isLoggedIn);
   const [, setLayoutEmail] = useRecoilState<string | null | undefined>(layoutEmail);
   const [, setUserEmail] = useRecoilState<string | null | undefined>(userEmail);
-
+  const autologin = useRecoilValue(autoLogin);
   const router = useRouter();
   const onChangeEmail = (event: ChangeEvent<HTMLInputElement>): void => {
     setEmail(event.target.value);
@@ -52,14 +52,16 @@ export const useLogin = () => {
         const emailPrefix = atIndex !== -1 ? email?.substring(0, atIndex) : email;
         setLayoutEmail(emailPrefix);
         setLogin(true);
+        if (!autologin) {
+          // 자동로그인이 false 경우만 세션 만료 시간 설정
+          const now = new Date();
+          const sessionExpiry = now.getTime() + 3600000;
+          // 현재 시간에서 1시간 후
+          localStorage.setItem('sessionExpiry', sessionExpiry.toString());
+        }
+
         success();
         router.push('/');
-        setTimeout(() => {
-          alert('로그인 세션이 만료 되었습니다.');
-          setLogin(false);
-          setLayoutEmail(null);
-          setUserEmail(null);
-        }, 3600000);
       })
       .catch((error: any) => {
         loginError();

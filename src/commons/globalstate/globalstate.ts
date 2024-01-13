@@ -43,3 +43,9 @@ export const userEmail = atom<string | null | undefined>({
   default: null,
   effects_UNSTABLE: [persistAtomEffect],
 });
+
+export const autoLogin = atom<boolean | null>({
+  key: 'autoLogin',
+  default: null,
+  effects_UNSTABLE: [persistAtomEffect],
+});

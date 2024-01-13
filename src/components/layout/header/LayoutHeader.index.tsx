@@ -159,10 +159,18 @@ export default function LayoutHeader(): JSX.Element {
           </NavDiv>
         </NavWrapper>
         {login === null ? (
-          <LodingDiv>
-            <Spin size="default" />
-            <Loding>loading...</Loding>
-          </LodingDiv>
+          // <LodingDiv>
+          //   <Spin size="default" />
+          //   <Loding>loading...</Loding>
+          // </LodingDiv>
+          <ButtonWrapper>
+            <Link href="/login">
+              <InnerButton>로그인</InnerButton>
+            </Link>
+            <Link href="/signup">
+              <SignUpButton>회원가입</SignUpButton>
+            </Link>
+          </ButtonWrapper>
         ) : (
           <>
             {login ? (
