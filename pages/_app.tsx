@@ -35,7 +35,7 @@ export default function App({ Component, pageProps }: AppProps): JSX.Element {
           localStorage.removeItem('sessionExpiry');
           localStorage.removeItem('recoil-persist');
           alert('로그인 세션이 만료되었습니다. 다시 로그인 해주세요.');
-          clearInterval(interval); // 인터벌 정지
+          // clearInterval(interval); // 인터벌 정지
           window.location.href = '/';
           // 필요한 로그아웃 처리
         }

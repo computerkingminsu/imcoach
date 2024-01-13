@@ -95,7 +95,7 @@ export default function LayoutHeader(): JSX.Element {
         setLogin(null); // Recoil 상태를 초기화
         setLayoutEmail(null);
         setUserEmail(null);
-
+        localStorage.removeItem('sessionExpiry');
         localStorage.removeItem('recoil-persist'); // 로컬 스토리지에서 Recoil 상태 제거
         router.push('/').then(() => {
           window.location.reload(); // 페이지 새로 고침은 모든 상태 업데이트가 완료된 후 수행
