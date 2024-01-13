@@ -7,7 +7,7 @@ import { useRecoilState } from 'recoil';
 
 export const useAuth = () => {
   const [user, setUser] = useState(null);
-  const [, setLogin] = useRecoilState(isLoggedIn);
+  const [login, setLogin] = useRecoilState(isLoggedIn);
   const [, setLayoutEmail] = useRecoilState(layoutEmail);
   const [userEmail, setUserEmail] = useState(null);
 

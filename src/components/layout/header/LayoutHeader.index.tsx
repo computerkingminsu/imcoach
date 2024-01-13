@@ -158,11 +158,12 @@ export default function LayoutHeader(): JSX.Element {
             </Link>
           </NavDiv>
         </NavWrapper>
-        {login === null ? (
-          // <LodingDiv>
-          //   <Spin size="default" />
-          //   <Loding>loading...</Loding>
-          // </LodingDiv>
+        {/* {login === null ? (
+          <LodingDiv>
+            <Spin size="default" />
+            <Loding>loading...</Loding>
+          </LodingDiv>
+        ) : (
           <ButtonWrapper>
             <Link href="/login">
               <InnerButton>로그인</InnerButton>
@@ -171,26 +172,25 @@ export default function LayoutHeader(): JSX.Element {
               <SignUpButton>회원가입</SignUpButton>
             </Link>
           </ButtonWrapper>
+          <> */}
+        {login ? (
+          <UserWrapper>
+            <UserEmail>{emailPrefix}님</UserEmail>
+            <MypageLogout onClick={onClickMoveToPage('/mypage')}>마이페이지</MypageLogout>
+            <MypageLogout onClick={onClickLogout}>로그아웃</MypageLogout>
+          </UserWrapper>
         ) : (
-          <>
-            {login ? (
-              <UserWrapper>
-                <UserEmail>{emailPrefix}님</UserEmail>
-                <MypageLogout onClick={onClickMoveToPage('/mypage')}>마이페이지</MypageLogout>
-                <MypageLogout onClick={onClickLogout}>로그아웃</MypageLogout>
-              </UserWrapper>
-            ) : (
-              <ButtonWrapper>
-                <Link href="/login">
-                  <InnerButton>로그인</InnerButton>
-                </Link>
-                <Link href="/signup">
-                  <SignUpButton>회원가입</SignUpButton>
-                </Link>
-              </ButtonWrapper>
-            )}
-          </>
+          <ButtonWrapper>
+            <Link href="/login">
+              <InnerButton>로그인</InnerButton>
+            </Link>
+            <Link href="/signup">
+              <SignUpButton>회원가입</SignUpButton>
+            </Link>
+          </ButtonWrapper>
         )}
+        {/* </>
+        )} */}
       </InnerWrapper>
       <Navbar>
         <NavbarDiv>

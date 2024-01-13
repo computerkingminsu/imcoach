@@ -16,6 +16,7 @@ const Body = styled.div`
 `;
 
 export default function Layout(props: ILayoutProps): JSX.Element {
+  // useAuth();
   return (
     <>
       <LayoutHeader />
