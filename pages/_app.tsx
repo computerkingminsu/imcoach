@@ -31,6 +31,7 @@ export default function App({ Component, pageProps }: AppProps): JSX.Element {
       if (sessionExpiry) {
         const now = new Date().getTime();
         if (now > parseInt(sessionExpiry, 10)) {
+          authInstance.signOut();
           localStorage.removeItem('sessionExpiry');
           localStorage.removeItem('recoil-persist');
           alert('로그인 세션이 만료되었습니다. 다시 로그인 해주세요.');
